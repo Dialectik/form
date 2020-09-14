@@ -67,6 +67,9 @@ class TestController extends Controller
         $model = new Test();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $model->updated_at = Yii::$app->formatter->asDate('now', 'php:Y-m-d');
+        	$model->save();
+            
             return $this->redirect(['view', 'id' => $model->id]);
         }
 		
@@ -87,6 +90,9 @@ class TestController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $model->updated_at = Yii::$app->formatter->asDate('now', 'php:Y-m-d');
+        	$model->save();
+            
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
